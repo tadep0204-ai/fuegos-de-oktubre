@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fuegos de Oktubre</title>
+<meta name="description" content="Agrupación Fuegos de Oktubre, Lista 10. Colegio Nacional de La Plata.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&display=swap">
+<style>
+  /* Layout: estilo de los flyers de la Lista 10 — franja superior, portada con logo + Diego y Messi, quiénes somos con fotos, propuestas, la lista, botiquín de salud mental, remera, sumate a militar, propuestas por mail, cierre */
+  :root {
+    --navy: #04053d;
+    --band: #05095f;
+    --royal: #1d3aaf;
+    --sky: #92d7ff;
+    --chip: #83b6e5;
+    --paper: #e7f2fc;
+    --white: #ffffff;
+    --muted: #b7c6e6;
+    --ink-soft: #33427a;
+    --danger: #b3261e;
+    --nav-h: 60px;
+    --font-head: "Montserrat", "Segoe UI", system-ui, sans-serif;
+    --font-big: "Bebas Neue", "Impact", "Arial Narrow", sans-serif;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--font-head);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--sky);
+    outline-offset: 3px;
+  }
+  img { display: block; }
+
+  .wrap {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  section { scroll-margin-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)); position: relative; }
+
+  h2 {
+    font-family: var(--font-head);
+    font-weight: 900;
+    font-size: clamp(2.1rem, 5.4vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: -.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .doodle { position: absolute; pointer-events: none; opacity: .95; }
+
+  /* Franja de elecciones */
+  .topband { background: var(--band); text-align: center; }
+  .topband .wrap { padding-block: 14px 16px; }
+  .topband p { margin: 0; line-height: 1.25; }
+  .topband .e { font-weight: 400; font-size: clamp(.95rem, 2.2vw, 1.2rem); letter-spacing: .02em; }
+  .topband .l { font-weight: 800; font-size: clamp(1.05rem, 2.6vw, 1.45rem); }
+  .topband .l b { font-family: var(--font-big); font-weight: 400; font-size: 1.35em; letter-spacing: .02em; vertical-align: -.06em; }
+
+  /* Barra fija de secciones */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    height: env(safe-area-inset-top, 0px);
+    z-index: 30;
+    background: var(--navy);
+  }
+  .nav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: var(--navy);
+    border-bottom: 1px solid rgba(131, 182, 229, .3);
+    box-shadow: 0 8px 24px -16px rgba(0, 0, 0, .8);
+  }
+  .nav .wrap {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    height: var(--nav-h);
+  }
+  .nav .brand { flex: none; display: block; }
+  .nav .brand img { height: 40px; width: auto; }
+  .nav ul {
+    list-style: none;
+    margin: 0 0 0 auto;
+    padding: 0;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    min-width: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav ul::-webkit-scrollbar { display: none; }
+  .nav a.link {
+    display: block;
+    white-space: nowrap;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: .86rem;
+    text-decoration: none;
+    color: var(--muted);
+    transition: background-color .2s, color .2s;
+  }
+  .nav a.link:hover { color: var(--white); }
+  .nav a.link.on { background: var(--royal); color: var(--white); }
+  .nav a.link.cta { color: var(--sky); }
+  .nav a.link.cta.on { color: var(--white); }
+
+  /* Portada */
+  .hero {
+    background-color: var(--navy);
+    background-image: radial-gradient(rgba(146, 215, 255, .07) 1.2px, transparent 1.3px);
+    background-size: 9px 9px;
+    overflow: hidden;
+  }
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(28px, 5vw, 56px);
+    align-items: center;
+    padding-block: clamp(44px, 7vw, 88px) clamp(48px, 7vw, 88px);
+  }
+  .hero .logo { width: min(440px, 100%); height: auto; }
+  .lead {
+    margin: 26px 0 0;
+    max-width: 30ch;
+    font-weight: 800;
+    font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+  .lead span { color: var(--sky); }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 24px;
+    border-radius: 999px;
+    border: 2px solid var(--sky);
+    background: transparent;
+    color: var(--sky);
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color .2s, color .2s, border-color .2s, transform .2s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.solid { background: var(--sky); color: var(--navy); }
+  .btn.solid:hover { background: var(--white); border-color: var(--white); }
+  .btn.ghost:hover { color: var(--white); border-color: var(--white); }
+  .hero figure { margin: 0; }
+  .hero .dm { width: 100%; height: auto; max-width: 100%; }
+  .hero .d1 { width: 64px; top: 22px; left: max(8px, 3vw); transform: rotate(-12deg); }
+  .hero .d2 { width: 50px; top: 38px; right: max(10px, 4vw); transform: rotate(10deg); }
+
+  /* Quiénes somos */
+  .about .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(32px, 6vw, 72px);
+    align-items: center;
+    padding-block: clamp(52px, 8vw, 100px);
+  }
+  .about h2 { margin-bottom: 22px; }
+  .about p { margin: 0 0 16px; max-width: 58ch; color: var(--muted); font-size: 1.05rem; }
+  .about p:last-child { margin-bottom: 0; }
+  .about p strong { color: var(--white); }
+  .about p.dream {
+    font-family: var(--font-big);
+    font-size: clamp(1.9rem, 4.4vw, 2.6rem);
+    line-height: 1;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  .about p.dream span { color: var(--sky); }
+
+  .hicimos {
+    display: block;
+    margin-top: 28px;
+    max-width: 30rem;
+    border: 2px solid var(--chip);
+    padding: 20px 22px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 900;
+    line-height: 1.05;
+    transition: border-color .2s, background-color .2s;
+  }
+  .hicimos:hover { border-color: var(--sky); background: var(--band); }
+  .hicimos .t1 { display: block; font-size: clamp(1.4rem, 3.4vw, 1.9rem); }
+  .hicimos .t1 em { font-style: normal; color: var(--sky); }
+  .hicimos .t2 { display: block; font-size: clamp(1.15rem, 2.8vw, 1.5rem); color: var(--sky); margin-top: 2px; }
+  .hicimos .go { display: block; margin-top: 12px; font-size: .92rem; font-weight: 700; text-transform: none; color: var(--white); }
+
+  .frame { border: 3px solid var(--sky); max-width: 100%; }
+  .frame img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+
+  .wideband img {
+    width: 100%;
+    height: clamp(240px, 42vw, 560px);
+    object-fit: cover;
+    object-position: center 62%;
+  }
+
+  /* Franja que corre */
+  .ticker { background: var(--royal); overflow: hidden; padding-block: 14px; }
+  .ticker .track { display: flex; width: max-content; animation: run 40s linear infinite; }
+  .ticker .row {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    padding-right: 26px;
+    font-family: var(--font-big);
+    font-size: clamp(1.8rem, 4.2vw, 2.8rem);
+    line-height: 1;
+    white-space: nowrap;
+    letter-spacing: .02em;
+  }
+  .ticker .row img { width: 26px; height: auto; }
+  @keyframes run { to { transform: translateX(-50%); } }
+
+  /* Propuestas */
+  .props { background: var(--paper); color: var(--navy); }
+  .props .wrap { padding-block: clamp(56px, 8vw, 100px); }
+  .props .head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px 32px;
+    margin-bottom: 34px;
+  }
+  .props .head p { margin: 0; font-weight: 700; color: var(--royal); }
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(28px, 5vw, 64px);
+    counter-reset: p;
+  }
+  .list li {
+    counter-increment: p;
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: 10px;
+    align-items: baseline;
+    padding-block: 18px 20px;
+    border-top: 2px solid var(--navy);
+    font-weight: 600;
+    font-size: 1.05rem;
+    line-height: 1.45;
+  }
+  .list li::before {
+    content: counter(p);
+    font-family: var(--font-big);
+    font-size: 2.6rem;
+    line-height: .9;
+    color: var(--royal);
+  }
+  .list li span { font-weight: 500; color: var(--ink-soft); }
+  .bonus {
+    margin-top: 34px;
+    background: var(--navy);
+    color: var(--white);
+    padding: clamp(22px, 4vw, 32px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px 32px;
+  }
+  .bonus h3 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0;
+    font-weight: 900;
+    font-size: clamp(1.5rem, 3.6vw, 2.2rem);
+    line-height: 1.05;
+  }
+  .bonus h3 img { width: 42px; height: auto; }
+  .bonus p { margin: 0; max-width: 46ch; color: var(--muted); }
+
+  /* La lista */
+  .lista .wrap { padding-block: clamp(56px, 8vw, 100px); }
+  .lista .intro {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px 32px;
+    margin-bottom: 44px;
+  }
+  .lista .intro p { margin: 0; color: var(--muted); max-width: 40ch; }
+  .big10 { font-family: var(--font-big); font-size: 1.25em; color: var(--sky); letter-spacing: .01em; }
+  .pill {
+    display: inline-block;
+    background: var(--royal);
+    color: var(--white);
+    font-weight: 800;
+    font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+    padding: 6px 20px 7px;
+    border-radius: 999px;
+    margin: 0 0 22px;
+  }
+  .block + .block { margin-top: 48px; }
+
+  .cd { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .cd div { border: 2px solid var(--royal); padding: 18px 18px 20px; min-width: 0; }
+  .cd small {
+    display: block;
+    font-weight: 800;
+    font-size: .78rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--sky);
+  }
+  .cd strong { display: block; font-weight: 800; font-size: 1.3rem; line-height: 1.2; margin-top: 6px; }
+  .cd span, .people span, .voc span { color: var(--muted); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  .cons { display: flex; flex-wrap: wrap; gap: 28px 24px; }
+  .cons div { position: relative; padding-top: 16px; }
+  .cons small {
+    position: absolute;
+    top: 0;
+    left: 22px;
+    background: var(--royal);
+    font-weight: 800;
+    font-size: .95rem;
+    padding: 2px 12px;
+    white-space: nowrap;
+  }
+  .cons strong {
+    display: block;
+    background: var(--white);
+    color: var(--royal);
+    font-weight: 800;
+    font-size: clamp(1.25rem, 3vw, 1.6rem);
+    padding: 16px 28px 10px;
+    line-height: 1.15;
+  }
+
+  .people {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px 28px;
+  }
+  .people li { border-left: 3px solid var(--sky); padding-left: 16px; min-width: 0; }
+  .people small { display: block; font-weight: 700; font-size: .85rem; color: var(--sky); }
+  .people strong { display: block; font-weight: 800; font-size: 1.12rem; line-height: 1.25; margin-top: 2px; }
+
+  .voc { list-style: none; margin: 0; padding: 0; display: grid; }
+  .voc li {
+    display: grid;
+    grid-template-columns: 9rem minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px 24px;
+    align-items: baseline;
+    padding-block: 14px;
+    border-top: 1px solid rgba(131, 182, 229, .35);
+  }
+  .voc li:last-child { border-bottom: 1px solid rgba(131, 182, 229, .35); }
+  .voc b { font-weight: 800; color: var(--sky); }
+  .voc em { font-style: normal; font-weight: 700; min-width: 0; }
+  .lista .d3 { width: 58px; top: 54px; right: max(12px, 4vw); transform: rotate(8deg); }
+
+  /* Botiquín de salud mental */
+  .salud { background: var(--band); }
+  .salud .wrap { padding-block: clamp(56px, 8vw, 100px); }
+  .salud .head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 24px 48px;
+    align-items: end;
+    margin-bottom: 40px;
+  }
+  .salud .head p { margin: 14px 0 0; color: var(--muted); max-width: 52ch; }
+  .sos {
+    border: 2px solid var(--chip);
+    padding: 18px 22px 20px;
+    display: grid;
+    gap: 2px;
+    justify-self: start;
+  }
+  .sos small { font-weight: 800; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; color: var(--sky); }
+  .sos a {
+    font-family: var(--font-big);
+    font-size: clamp(2.6rem, 7vw, 3.8rem);
+    line-height: 1;
+    letter-spacing: .02em;
+    text-decoration: none;
+    user-select: all;
+  }
+  .sos span { font-size: .9rem; color: var(--muted); }
+
+  .tag {
+    display: inline-block;
+    background: var(--chip);
+    color: var(--navy);
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 5px 18px 6px;
+    border-radius: 999px;
+    margin: 0 0 18px;
+  }
+  .sub-h {
+    display: block;
+    font-family: var(--font-big);
+    font-weight: 400;
+    font-size: clamp(2rem, 4.6vw, 2.8rem);
+    line-height: 1;
+    letter-spacing: .01em;
+  }
+  .sub-p { display: block; margin-top: 6px; color: var(--muted); font-size: 1rem; }
+
+  details.acc { margin-top: 40px; border-top: 2px solid var(--chip); }
+  details.acc + details.acc { margin-top: 0; }
+  details.acc:last-of-type { border-bottom: 2px solid var(--chip); }
+  details.acc > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 22px;
+  }
+  details.acc > summary::-webkit-details-marker { display: none; }
+  details.acc > summary::after {
+    content: "";
+    flex: none;
+    width: 14px;
+    height: 14px;
+    border-right: 3px solid var(--sky);
+    border-bottom: 3px solid var(--sky);
+    transform: rotate(45deg) translate(-3px, -3px);
+    transition: transform .2s;
+  }
+  details.acc[open] > summary::after { transform: rotate(-135deg); }
+  details.acc > summary:hover .sub-h { color: var(--sky); }
+  details.acc[open] { padding-bottom: 32px; }
+
+  /* Páginas (una sección a la vez) */
+  [data-page]:not([hidden]) { animation: aparecer .3s ease; }
+  @keyframes aparecer { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+
+  .news { background: var(--band); }
+  .news .wrap { padding-block: clamp(48px, 7vw, 88px); }
+  .news h2 { margin-bottom: 28px; }
+  .feed { display: grid; gap: 24px; }
+  .post { background: var(--navy); border: 2px solid var(--royal); min-width: 0; }
+  .post.featured { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+  .post-img img { width: 100%; height: 100%; min-height: 260px; object-fit: cover; }
+  .post-body { padding: clamp(22px, 4vw, 36px); min-width: 0; }
+  .post .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 0 0 16px; font-weight: 700; font-size: .85rem; color: var(--chip); }
+  .post .chip { background: var(--sky); color: var(--navy); border-radius: 999px; padding: 3px 12px; font-weight: 800; }
+  .post h3 { margin: 0 0 16px; font-weight: 900; font-size: clamp(1.6rem, 3.6vw, 2.3rem); line-height: 1.08; text-wrap: balance; }
+  .post p { margin: 0 0 14px; color: var(--muted); max-width: 60ch; }
+  .post p.sign { margin: 18px 0 0; font-family: var(--font-big); font-size: 1.7rem; letter-spacing: .02em; color: var(--white); }
+  .post p.sign b { font-weight: 400; color: var(--sky); }
+
+  .won {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 22px 0 0;
+    background: var(--royal);
+    border-radius: 999px;
+    padding: 6px 16px 6px 10px;
+    font-weight: 800;
+    font-size: clamp(.95rem, 2.2vw, 1.1rem);
+  }
+  .won img { width: 24px; height: auto; }
+  .won + .lead { margin-top: 18px; }
+
+  .guardias { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .card { background: var(--navy); padding: 22px; min-width: 0; }
+  .card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+  .place strong { display: block; font-weight: 800; line-height: 1.3; }
+  .place span { display: block; color: var(--muted); font-size: .95rem; line-height: 1.45; }
+  .place .when { color: var(--sky); font-weight: 600; }
+
+  .grid2 {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 40px;
+    border-top: 1px solid rgba(131, 182, 229, .35);
+  }
+  .grid3 {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 32px;
+    border-top: 1px solid rgba(131, 182, 229, .35);
+  }
+  .grid2 li, .grid3 li {
+    padding-block: 16px;
+    border-bottom: 1px solid rgba(131, 182, 229, .35);
+    min-width: 0;
+  }
+  .grid2 b, .grid3 b {
+    display: block;
+    font-weight: 800;
+    font-size: .92rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--sky);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .grid2 span, .grid3 span { display: block; color: var(--muted); font-size: .95rem; line-height: 1.45; }
+  .grid2 span.tel, .grid3 span.tel { color: var(--white); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .mini { margin: 34px 0 14px; font-weight: 800; font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; }
+
+  /* Sumate a militar */
+  .sumate { background: var(--royal); }
+  .sumate .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(32px, 6vw, 72px);
+    align-items: start;
+    padding-block: clamp(56px, 8vw, 100px);
+  }
+  .sumate .lead2 { margin: 16px 0 28px; font-size: 1.1rem; max-width: 46ch; }
+  .why { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+  .why li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
+  .why img { width: 34px; height: auto; margin-top: 2px; }
+  .why strong { display: block; font-weight: 800; font-size: 1.12rem; line-height: 1.3; }
+  .why span { display: block; color: var(--paper); opacity: .85; margin-top: 2px; }
+  .join { background: var(--paper); color: var(--navy); padding: clamp(22px, 4vw, 34px); }
+  .join h3 { margin: 0 0 18px; font-weight: 900; font-size: 1.5rem; line-height: 1.15; }
+  .join .btn { border-color: var(--navy); color: var(--navy); }
+  .join .btn.solid { background: var(--navy); color: var(--white); }
+  .join .btn.solid:hover { background: var(--royal); border-color: var(--royal); }
+
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .fallback { margin: 0; font-weight: 700; }
+  .fallback a { color: var(--royal); }
+
+  /* Remera */
+  .remera { background: var(--navy); }
+  .remera .wrap { padding-block: clamp(56px, 8vw, 100px); }
+  .remera .rhead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px 32px;
+    margin-bottom: 30px;
+  }
+  .remera .rhead p { margin: 0; color: var(--muted); max-width: 44ch; }
+  .pics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .pics figure { margin: 0; min-width: 0; }
+  .pics img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border: 3px solid var(--sky);
+  }
+  .pics figcaption {
+    margin-top: 10px;
+    font-weight: 800;
+    font-size: .85rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--chip);
+  }
+
+  /* Formulario */
+  .form-sec { background: var(--paper); color: var(--navy); }
+  .form-sec .wrap { padding-block: clamp(56px, 8vw, 100px); }
+  .form-sec h2 { margin-bottom: 16px; }
+  .form-sec .sub { margin: 0 0 28px; max-width: 56ch; font-weight: 500; }
+  form { max-width: 680px; display: grid; gap: 20px; }
+  .join form { gap: 16px; }
+  label { display: block; font-weight: 800; margin-bottom: 8px; }
+  input, textarea {
+    width: 100%;
+    font: inherit;
+    font-weight: 500;
+    color: var(--navy);
+    background: var(--white);
+    border: 2px solid var(--navy);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  textarea { min-height: 170px; resize: vertical; }
+  input::placeholder, textarea::placeholder { color: #6b7699; }
+  .form-sec .btn { border-color: var(--navy); color: var(--navy); }
+  .form-sec .btn.solid { background: var(--navy); color: var(--white); }
+  .form-sec .btn.solid:hover { background: var(--royal); border-color: var(--royal); }
+  .form-sec .btn.ghost:hover { background: var(--navy); color: var(--white); }
+  .status { min-height: 1.6em; margin: 0; font-weight: 700; color: var(--royal); }
+  .status.err { color: var(--danger); }
+  .help { margin: 0; font-size: .9rem; color: var(--ink-soft); }
+
+  /* Cierre */
+  footer { text-align: center; }
+  footer .wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding-block: clamp(48px, 7vw, 84px) 28px;
+  }
+  footer .logo { width: 200px; height: auto; }
+  footer .ig { font-weight: 700; margin: 6px 0 0; }
+  footer .ig a { color: var(--sky); }
+  footer .fine {
+    margin: 26px 0 0;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--chip);
+  }
+
+  @media (max-width: 900px) {
+    .guardias, .grid3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cd { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .people { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 780px) {
+    .hero .wrap, .about .wrap, .sumate .wrap, .salud .head { grid-template-columns: minmax(0, 1fr); }
+    .grid2 { grid-template-columns: minmax(0, 1fr); }
+    .hero .wrap { text-align: center; justify-items: center; }
+    .hero .logo { margin: 0 auto; width: min(340px, 100%); }
+    .lead { margin-inline: auto; }
+    .actions { justify-content: center; }
+    .voc li { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .voc b { grid-column: 1 / -1; }
+    .list { grid-template-columns: minmax(0, 1fr); }
+    .post.featured { grid-template-columns: minmax(0, 1fr); }
+    .post-img img { min-height: 0; aspect-ratio: 4 / 3; height: auto; }
+  }
+  @media (max-width: 640px) {
+    :root { --nav-h: 56px; }
+    .nav .wrap { gap: 10px; }
+    .nav .brand img { height: 34px; }
+    .nav ul { margin-left: 0; mask-image: linear-gradient(90deg, #000 85%, transparent); -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); }
+    .nav a.link { padding: 7px 10px; font-size: .82rem; }
+  }
+  @media (max-width: 520px) {
+    .cd, .people { grid-template-columns: minmax(0, 1fr); }
+    .voc li { grid-template-columns: minmax(0, 1fr); }
+    .pics { grid-template-columns: minmax(0, 1fr); }
+    .guardias, .grid3 { grid-template-columns: minmax(0, 1fr); }
+    .hero .d1, .hero .d2 { width: 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .ticker .track { animation: none; }
+    [data-page]:not([hidden]) { animation: none; }
+    details.acc > summary::after { transition: none; }
+    .btn { transition: none; }
+    .btn:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"></svg>
+
+<div class="topband">
+  <div class="wrap">
+    <p class="e">Colegio Nacional de La Plata</p>
+    <p class="l">Fuegos de Oktubre | LISTA <b>10</b></p>
+  </div>
+</div>
+
+<nav class="nav" aria-label="Secciones">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Fuegos de Oktubre, ir al inicio"><img src="img/logo.png" alt="" width="480" height="340"></a>
+    <ul id="nav-links">
+      <li><a class="link" href="#inicio">Inicio</a></li>
+      <li><a class="link" href="#quienes-somos">Quiénes somos</a></li>
+      <li><a class="link" href="#propuestas">Propuestas</a></li>
+      <li><a class="link" href="#lista">Lista 10</a></li>
+      <li><a class="link" href="#salud-mental">Salud mental</a></li>
+      <li><a class="link" href="#remera">Remera</a></li>
+      <li><a class="link cta" href="#sumate">Sumate</a></li>
+      <li><a class="link" href="#deja-tu-propuesta">Dejá tu propuesta</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="page" id="inicio" data-page>
+  <section class="hero">
+    <img class="doodle d1" src="img/estrella.png" alt="">
+    <img class="doodle d2" src="img/rayo.png" alt="">
+    <div class="wrap">
+      <div>
+        <h1 style="margin:0"><img class="logo" src="img/logo.png" alt="Agrupación Fuegos de Oktubre" width="480" height="340"></h1>
+        <p class="won"><img src="img/estrella.png" alt="">Nuevo Centro de Estudiantes</p>
+        <p class="lead">Por un centro <span>democrático, representativo</span> y <span>participativo</span></p>
+        <div class="actions">
+          <a class="btn solid" href="#deja-tu-propuesta">¡Dejá tus propuestas!</a>
+          <a class="btn ghost" href="#propuestas">Propuestas 2027</a>
+          <a class="btn ghost" href="#sumate">Sumate a militar</a>
+        </div>
+      </div>
+      <figure>
+        <img class="dm" src="img/pelota-al-10.png" alt="Ilustración de Diego Maradona y Lionel Messi abrazados de espaldas con la 10, y el lema La pelota siempre al 10" width="660" height="325">
+      </figure>
+    </div>
+  </section>
+
+  <section class="news" id="noticias">
+    <div class="wrap">
+      <h2>Noticias</h2>
+      <div class="feed">
+        <article class="post featured">
+          <div class="post-img"><img src="img/grupo-escenario.jpg" alt="La agrupación festejando sobre el escenario del salón de actos con la bandera de Fuegos de Oktubre" width="1280" height="960"></div>
+          <div class="post-body">
+            <p class="meta"><span class="chip">Elecciones CECoN 2026</span><time datetime="2026-10">Octubre 2026</time></p>
+            <h3>¡Ganamos las elecciones! Somos el nuevo Centro de Estudiantes</h3>
+            <p>Fuegos de Oktubre, Lista 10, es la nueva conducción del Centro de Estudiantes del Colegio Nacional. Gracias a cada estudiante que nos votó, que se sumó al escrutinio y que confió en este sueño.</p>
+            <p>Ahora empieza lo más importante: cumplir las propuestas que armamos para el Nacio y construir un centro democrático, representativo y participativo, con todxs adentro.</p>
+            <p class="sign">La pelota siempre al <b>10</b>.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="page" id="quienes-somos" data-page hidden>
+  <section class="about">
+    <div class="wrap">
+      <div>
+        <h2>Quiénes somos</h2>
+        <p class="dream">Venimos a proponerles un <span>sueño</span></p>
+        <p>Somos una agrupación fundada en 2025 por estudiantes al igual que ustedes, con la idea de que el colegio sea un lugar cómodo y seguro para lxs chicxs.</p>
+        <p>Defendemos <strong>la educación pública, la igualdad de derechos</strong> y queremos que <strong>la memoria perdure en el tiempo</strong>.</p>
+        <p>Buscamos acompañarlos en todo momento en su trayecto secundario, con el fin de que ustedes se lleven lindos recuerdos y enseñanzas.</p>
+        <a class="hicimos" href="https://www.instagram.com/agrup.fuegosdeoktubre/" target="_blank" rel="noopener">
+          <span class="t1">Mirá <em>todo</em> lo que hicimos</span>
+          <span class="t2">sin ser conducción</span>
+          <span class="go">Está en nuestro Instagram →</span>
+        </a>
+      </div>
+      <div class="frame"><img src="img/grupo-bandera.jpg" alt="Integrantes de Fuegos de Oktubre con remeras de la agrupación sosteniendo la bandera" width="1100" height="825"></div>
+    </div>
+  </section>
+
+  <div class="wideband"><img src="img/grupo-escenario.jpg" alt="La agrupación sobre el escenario del salón de actos con la bandera de Fuegos de Oktubre" width="1280" height="960"></div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="track">
+      <div class="row">
+        <span>La pelota siempre al 10</span><img src="img/estrella.png" alt="">
+        <span>Torneos</span><img src="img/estrella.png" alt="">
+        <span>Festivales</span><img src="img/estrella.png" alt="">
+        <span>Mateadas</span><img src="img/estrella.png" alt="">
+        <span>Cine debates</span><img src="img/estrella.png" alt="">
+        <span>Proyecto Memoria</span><img src="img/estrella.png" alt="">
+        <span>Cuidemos al Nacio</span><img src="img/estrella.png" alt="">
+      </div>
+      <div class="row">
+        <span>La pelota siempre al 10</span><img src="img/estrella.png" alt="">
+        <span>Torneos</span><img src="img/estrella.png" alt="">
+        <span>Festivales</span><img src="img/estrella.png" alt="">
+        <span>Mateadas</span><img src="img/estrella.png" alt="">
+        <span>Cine debates</span><img src="img/estrella.png" alt="">
+        <span>Proyecto Memoria</span><img src="img/estrella.png" alt="">
+        <span>Cuidemos al Nacio</span><img src="img/estrella.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <section class="props" id="propuestas" data-page hidden>
+    <div class="wrap">
+      <div class="head">
+        <h2>Propuestas 2027</h2>
+        <p>15 propuestas para el Nacio</p>
+      </div>
+      <ol class="list">
+        <li><div>Charlas de género, ESI y salud mental. <span>Y otros temas que nos atraviesan.</span></div></li>
+        <li><div>Colecta de libros y donaciones.</div></li>
+        <li><div>Punto cebate: <span>termos y mates para todxs.</span></div></li>
+        <li><div>Reuniones de delegadxs, <span>como mínimo una vez por mes.</span></div></li>
+        <li><div>Toallitas y preservativos en los baños.</div></li>
+        <li><div>Protocolo de género y reforma del estatuto.</div></li>
+        <li><div>Torneos: <span>truco, Clash, ping pong, vóley, fútbol e intercolegiales.</span></div></li>
+        <li><div>Cuidemos al Nacio.</div></li>
+        <li><div>Festivales.</div></li>
+        <li><div>Sostener Fuegos Proyecta: <span>partidos, pelis y más, proyectados en el colegio.</span></div></li>
+        <li><div>Charlas con streamers, deportistas, actores <span>y más invitadxs.</span></div></li>
+        <li><div>Cine debates.</div></li>
+        <li><div>Proyecto Memoria.</div></li>
+        <li><div>Mateadas.</div></li>
+        <li><div>Fuegos Descuentos: <span>descuentos para lxs estudiantes del Nacio.</span></div></li>
+      </ol>
+      <div class="bonus" id="proyecta">
+        <h3><img src="img/rayo.png" alt="">Fuegos Proyecta</h3>
+        <p>Proyectamos partidos, películas y más en el colegio, para verlos todxs juntxs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="lista" id="lista" data-page hidden>
+    <img class="doodle d3" src="img/estrella.png" alt="">
+    <div class="wrap">
+      <div class="intro">
+        <h2>Lista <span class="big10">10</span></h2>
+        <p>La nueva comisión del Centro de Estudiantes, con cargo y división.</p>
+      </div>
+
+      <div class="block">
+        <p class="pill">Comisión Directiva</p>
+        <div class="cd">
+          <div><small>Presidenta</small><strong>Anto García</strong><span>4°12</span></div>
+          <div><small>Vicepresidente</small><strong>Rafa Suárez</strong><span>4°5</span></div>
+          <div><small>Sec. General</small><strong>Feli Costa</strong><span>4°6</span></div>
+          <div><small>Tesorera</small><strong>Vicky Benitez</strong><span>6°11</span></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <p class="pill">Consejeras</p>
+        <div class="cons">
+          <div><small>Primera Consejera</small><strong>Pili Petto 5°10</strong></div>
+          <div><small>Segunda Consejera</small><strong>Delfina Arias 5°1</strong></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <p class="pill">Secretarías y Delegaciones</p>
+        <ul class="people">
+          <li><small>Extensión</small><strong>Tizi Massaro</strong><span>3°6</span></li>
+          <li><small>Consejo Disciplina</small><strong>Lola Ceci</strong><span>4°5</span></li>
+          <li><small>Consejo Asesor</small><strong>Male Martinez</strong><span>4°12</span></li>
+          <li><small>Género y Diversidad</small><strong>Pili Juárez</strong><span>4°5</span></li>
+          <li><small>Prensa y Comunicación</small><strong>Jani Lobo</strong><span>3°11</span></li>
+          <li><small>Cultura</small><strong>Conra Ciano</strong><span>6°6</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p class="pill">Vocalías</p>
+        <ul class="voc">
+          <li><b>Sexto año</b><em>Facundo Garay <span>6°9</span></em><em>Thiago Menecis <span>6°1</span></em></li>
+          <li><b>Quinto año</b><em>Pilar Gonzales <span>5°10</span></em><em>Agustín Aguirre <span>5°10</span></em></li>
+          <li><b>Cuarto año</b><em>Ema Sirota <span>4°5</span></em><em>Jeremy Mendoza <span>4°2</span></em></li>
+          <li><b>Tercer año</b><em>Joaco Escobar <span>3°6</span></em><em>Guada Apis <span>3°5</span></em></li>
+          <li><b>Segundo año</b><em>Paz Yasky <span>2°11</span></em><em>Juana Ricci <span>2°7</span></em></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="salud" id="salud-mental" data-page hidden>
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <h2>Botiquín de salud mental</h2>
+          <p>Si vos o alguien que conocés la está pasando mal, no estás solx. Acá tenés a dónde ir y a quién llamar en La Plata.</p>
+        </div>
+        <div class="sos">
+          <small>En caso de emergencia, llamá</small>
+          <a href="tel:08009990091">0800-999-0091</a>
+          <span>Línea gratuita</span>
+        </div>
+      </div>
+
+      <div class="guardias">
+        <div class="card">
+          <p class="tag">Guardia de Salud Mental 24hs</p>
+          <ul>
+            <li class="place"><strong>HIGA San Martín</strong><span>1 y 70</span><span class="when">Todos los días</span></li>
+            <li class="place"><strong>Hospital Alejandro Korn</strong><span>520 y 175</span><span class="when">Todos los días</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="tag">Hasta 14 años</p>
+          <ul>
+            <li class="place"><strong>Hospital de Niños "Sor Ludovica"</strong><span>14 y 66</span><span class="when">Guardia todos los días, 24hs</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="tag">15 años en adelante</p>
+          <ul>
+            <li class="place"><strong>HIGA R. Rossi</strong><span>37 e/ 116 y 117</span><span class="when">Lun a vie de 9 a 17hs</span></li>
+            <li class="place"><strong>HIGA San Roque</strong><span>508 e/ 19 y 18</span><span class="when">Lun a vie de 9 a 17hs</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <details class="acc">
+      <summary><span><span class="sub-h">Centros Provinciales de Atención</span><span class="sub-p">Más lugares cerca tuyo · 7 centros</span></span></summary>
+      <ul class="grid2">
+        <li><b>Altos de San Lorenzo</b><span>Calle 29 y 88</span><span class="tel">221-5421486</span><span>Lun, mié y jue de 9 a 13hs · vie de 9 a 12hs</span></li>
+        <li><b>City Bell</b><span>Camino Gral. Belgrano esq. 447</span><span class="tel">221-4732019</span></li>
+        <li><b>El Retiro (CPA)</b><span>Calle 160 e/ 49 y 50 · Club Corazones del Retiro</span><span>Lun a jue de 9 a 17hs</span></li>
+        <li><b>San Carlos (CPA)</b><span>Calle 518 esq. 141 · Quinta Roth</span><span class="tel">221-6542683</span><span>Lun a vie de 8 a 14hs</span></li>
+        <li><b>Melchor Romero (CC SM CP)</b><span>Calle 515 y 159 · Las Rosas</span><span class="tel">221-5421240</span><span>Lun a vie de 8 a 17hs</span></li>
+        <li><b>Tolosa (CPA)</b><span>Calle 3 y 526</span><span class="tel">221-4895210</span><span>Lun a vie de 9 a 17hs</span></li>
+        <li><b>Villa Elvira (CPA)</b><span>Calle 120 esq. 75 · Centro de Fomento</span><span class="tel">221-4205886 / 221-4519218</span><span>Lun a vie de 9 a 16hs</span></li>
+      </ul>
+      </details>
+
+      <details class="acc">
+      <summary><span><span class="sub-h">Nadie se salva solx</span><span class="sub-p">Talleres del colegio, bibliotecas y espacios culturales</span></span></summary>
+      <p class="tag">Talleres dentro del colegio</p>
+      <ul class="grid3">
+        <li><b>Taller de Teatro</b><span>1° a 3° año: jueves de 18:30 a 20:00</span><span>4° a 6° año: viernes de 14:00 a 16:00</span><span>Prof. Mimí Harvey</span></li>
+        <li><b>Preparación para el Modelo ONU</b><span>Ciclo Superior · Lunes de 13:10 a 14:30</span><span>Biblioteca</span></li>
+        <li><b>Coro</b><span>Martes y jueves · 11:30 a 12:45 / 13:15 a 14:30</span><span>Dir. Emiliano Linares</span></li>
+        <li><b>Ensamble Instrumental</b><span>Para estudiantes que toquen algún instrumento</span><span>Dir. Emiliano Linares</span></li>
+        <li><b>Invasión Cineclub</b><span>Ciclo Superior · Martes 14:30</span><span>Microcine</span></li>
+        <li><b>Taller de Ajedrez</b><span>1° a 3° año · Lunes y miércoles de 11:00 a 12:15</span></li>
+      </ul>
+      <p class="mini">Bibliotecas y espacios culturales</p>
+      <ul class="grid3">
+        <li><b>Biblioteca Pública de la UNLP</b><span>Plaza Rocha 137 (7 y 60)</span><span class="tel">0221 423-6607</span></li>
+        <li><b>Biblioteca Central de la Provincia de Buenos Aires</b><span>Calle 47 N° 510 e/ 5 y 6</span><span class="tel">0221 425-1100</span></li>
+        <li><b>Biblioteca Popular Del Otro Lado del Árbol</b><span>Parque Saavedra, 14 e/ 66 y 67</span><span class="tel">0221 452-7101</span></li>
+        <li><b>Complejo Bibliotecario Municipal Francisco López Merino</b><span>Calle 49 N° 835 e/ 12 y Diagonal 74</span><span class="tel">0221 427-5795</span></li>
+        <li><b>Biblioteca Florentino Ameghino · FCNyM, UNLP</b><span>Museo de La Plata, Paseo del Bosque s/n</span><span class="tel">0221 425-7744, interno 115</span></li>
+        <li><b>Biblioteca Padre Carlos Cajade · Comisión Provincial por la Memoria</b><span>Calle 9 N° 984 e/ 51 y 53</span><span class="tel">WhatsApp: 221 639-4742</span></li>
+      </ul>
+      </details>
+    </div>
+  </section>
+
+  <section class="remera" id="remera" data-page hidden>
+    <div class="wrap">
+      <div class="rhead">
+        <h2>La remera de Fuegos</h2>
+        <p>Azul, con el logo adelante y atrás "Mucho coraje y nada de miedo para construir la Argentina que necesitamos".</p>
+      </div>
+      <div class="pics">
+        <figure>
+          <img src="img/remera-frente.jpg" alt="Estudiante en el patio del Nacio con la remera de Fuegos de Oktubre, vista de adelante" width="800" height="1067">
+          <figcaption>Adelante</figcaption>
+        </figure>
+        <figure>
+          <img src="img/remera-espalda.jpg" alt="Espalda de la remera: Mucho coraje y nada de miedo para construir la Argentina que necesitamos" width="1100" height="825" style="object-position: 45% center">
+          <figcaption>Atrás</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sumate" id="sumate" data-page hidden>
+    <div class="wrap">
+      <div>
+        <h2>Sumate a militar</h2>
+        <p class="lead2">Fuegos de Oktubre lo hacemos entre todxs. No necesitás experiencia, solo ganas.</p>
+        <ul class="why">
+          <li><img src="img/estrella.png" alt=""><div><strong>Para cambiar el Nacio desde adentro</strong><span>Las propuestas no se cumplen solas: las pensamos, las discutimos y las llevamos adelante juntxs.</span></div></li>
+          <li><img src="img/rayo.png" alt=""><div><strong>Para hacer cosas que te gustan</strong><span>Torneos, festivales, Fuegos Proyecta, mateadas: todo eso lo arma gente como vos.</span></div></li>
+          <li><img src="img/estrella.png" alt=""><div><strong>Porque nadie se salva solx</strong><span>Militar es acompañarnos, cuidarnos entre compañerxs y que nadie quede afuera.</span></div></li>
+        </ul>
+      </div>
+      <div class="join">
+        <h3>Inscribite y te escribimos</h3>
+        <form id="f-sumate" name="inscripcion" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="inscripcion">
+          <p class="hp"><label>No completes esto <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div>
+            <label for="s-nombre">Nombre y apellido</label>
+            <input id="s-nombre" name="nombre" type="text" autocomplete="name" placeholder="Ej: Juli Gómez">
+          </div>
+          <div>
+            <label for="s-curso">Curso</label>
+            <input id="s-curso" name="curso" type="text" autocomplete="off" placeholder="Ej: 3°6">
+          </div>
+          <div>
+            <label for="s-cel">Celular</label>
+            <input id="s-cel" name="celular" type="tel" autocomplete="tel" inputmode="tel" placeholder="Ej: 221 555-1234">
+          </div>
+          <div class="actions" style="margin-top:4px">
+            <button class="btn solid" type="submit">Quiero sumarme</button>
+          </div>
+          <p class="status" id="s-status" role="status"></p>
+          <p class="fallback" id="s-fallback" hidden></p>
+          <p class="help">Te escribimos al celular para contarte cómo seguir. Solo usamos estos datos para eso.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="form-sec" id="deja-tu-propuesta" data-page hidden>
+    <div class="wrap">
+      <h2>¡Dejá tus propuestas!</h2>
+      <p class="sub">Escribí lo que quieras cambiar del colegio o cualquier idea para el Centro. Nos llega por mail y la leemos.</p>
+      <form id="f-prop" name="propuestas" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="propuestas">
+        <p class="hp"><label>No completes esto <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div>
+          <label for="nombre">Tu nombre y curso (opcional)</label>
+          <input id="nombre" name="nombre" type="text" autocomplete="off" placeholder="Ej: Juli, 3°6">
+        </div>
+        <div>
+          <label for="propuesta">Tu propuesta</label>
+          <textarea id="propuesta" name="propuesta" placeholder="Contanos qué cambiarías…"></textarea>
+        </div>
+        <div class="actions" style="margin-top:0">
+          <button class="btn solid" type="submit">Enviar propuesta</button>
+          <button class="btn ghost" id="copy" type="button">Copiar mensaje</button>
+        </div>
+        <p class="status" id="status" role="status"></p>
+        <p class="fallback" id="p-fallback" hidden></p>
+        <p class="help">Las propuestas llegan a <strong>fuegosdeoktubre.cnlp@gmail.com</strong>. También podés escribirnos por Instagram.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img class="logo" src="img/logo.png" alt="Agrupación Fuegos de Oktubre" width="480" height="340">
+    <p class="ig">Instagram: <a href="https://www.instagram.com/agrup.fuegosdeoktubre/" target="_blank" rel="noopener">@agrup.fuegosdeoktubre</a></p>
+    <p class="ig" style="margin:0">Mail: <a href="mailto:fuegosdeoktubre.cnlp@gmail.com">fuegosdeoktubre.cnlp@gmail.com</a></p>
+    <p class="fine">Agrupación Fuegos de Oktubre · Lista 10 · Colegio Nacional de La Plata</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const MAIL = 'fuegosdeoktubre.cnlp@gmail.com';
+  // En Netlify (data-forms="netlify" en <html>) los formularios se mandan solos y llegan al mail.
+  // En cualquier otro lado, se abre la app de mail con el mensaje listo.
+  const viaNetlify = document.documentElement.dataset.forms === 'netlify';
+
+  function say(el, text, err) {
+    el.textContent = text;
+    el.classList.toggle('err', !!err);
+  }
+
+  function mailto(subject, body) {
+    return 'mailto:' + MAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  }
+
+  function send(form, subject, body, status, fallback, done) {
+    fallback.hidden = true;
+    if (viaNetlify) {
+      say(status, 'Enviando…');
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then((r) => {
+        if (!r.ok) throw new Error(r.status);
+        form.reset();
+        say(status, done);
+      }).catch(() => showMail(subject, body, status, fallback, 'No se pudo enviar. Probá mandarlo por mail:'));
+    } else {
+      showMail(subject, body, status, fallback, 'Abriendo tu app de mail…');
+      window.location.href = mailto(subject, body);
+    }
+  }
+
+  function showMail(subject, body, status, fallback, text) {
+    say(status, text);
+    fallback.innerHTML = '';
+    const a = document.createElement('a');
+    a.href = mailto(subject, body);
+    a.textContent = 'Si no se abrió, tocá acá para mandarlo a ' + MAIL;
+    fallback.appendChild(a);
+    fallback.hidden = false;
+  }
+
+  // Sumate a militar
+  const fs = document.getElementById('f-sumate');
+  const sStatus = document.getElementById('s-status');
+  const sFallback = document.getElementById('s-fallback');
+  fs.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const nombre = fs.nombre.value.trim();
+    const curso = fs.curso.value.trim();
+    const cel = fs.celular.value.trim();
+    const missing = !nombre ? fs.nombre : !curso ? fs.curso : !cel ? fs.celular : null;
+    if (missing) {
+      say(sStatus, 'Completá tu nombre, curso y celular para inscribirte.', true);
+      missing.focus();
+      return;
+    }
+    if (cel.replace(/\D/g, '').length < 8) {
+      say(sStatus, 'Revisá el celular: tiene que tener al menos 8 números.', true);
+      fs.celular.focus();
+      return;
+    }
+    const body = 'Hola Fuegos! Me quiero sumar a militar.\n\nNombre: ' + nombre + '\nCurso: ' + curso + '\nCelular: ' + cel;
+    send(fs, 'Inscripción para militar: ' + nombre + ' (' + curso + ')', body, sStatus, sFallback,
+      '¡Listo, ' + nombre.split(' ')[0] + '! Te vamos a escribir al celular.');
+  });
+
+  // Propuestas
+  const fp = document.getElementById('f-prop');
+  const nombre = document.getElementById('nombre');
+  const propuesta = document.getElementById('propuesta');
+  const status = document.getElementById('status');
+  const pFallback = document.getElementById('p-fallback');
+
+  function message() {
+    const n = nombre.value.trim();
+    return 'Hola Fuegos! Les dejo una propuesta' + (n ? ' (' + n + ')' : '') + ':\n\n' + propuesta.value.trim();
+  }
+
+  function empty() {
+    if (propuesta.value.trim()) return false;
+    say(status, 'Escribí tu propuesta antes de mandarla.', true);
+    propuesta.focus();
+    return true;
+  }
+
+  fp.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    if (empty()) return;
+    const n = nombre.value.trim();
+    send(fp, 'Propuesta para Fuegos de Oktubre' + (n ? ' (' + n + ')' : ''), message(), status, pFallback,
+      '¡Gracias! Tu propuesta nos llegó.');
+  });
+
+  document.getElementById('copy').addEventListener('click', () => {
+    if (empty()) return;
+    const fallback = () => {
+      propuesta.focus();
+      propuesta.select();
+      say(status, 'No pudimos copiar solo. Seleccionamos tu propuesta: copiala vos.');
+    };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(message())
+          .then(() => say(status, 'Mensaje copiado. Pegalo en un mail a ' + MAIL + ' o en nuestro Instagram.'))
+          .catch(fallback);
+      } else fallback();
+    } catch (e) { fallback(); }
+  });
+
+  // Menú tipo app: muestra una sección a la vez
+  const pages = Array.from(document.querySelectorAll('[data-page]'));
+  const links = Array.from(document.querySelectorAll('#nav-links a.link'));
+  const navList = document.getElementById('nav-links');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isPage = (id) => pages.some((p) => p.id === id);
+
+  function show(id, scroll) {
+    const target = pages.find((p) => p.id === id) || pages[0];
+    pages.forEach((p) => { p.hidden = p !== target; });
+    let active = null;
+    links.forEach((a) => {
+      const on = a.getAttribute('href') === '#' + target.id;
+      a.classList.toggle('on', on);
+      if (on) active = a;
+    });
+    if (active && navList.scrollWidth > navList.clientWidth) {
+      navList.scrollTo({ left: active.offsetLeft - navList.clientWidth / 2 + active.offsetWidth / 2, behavior: reduce ? 'auto' : 'smooth' });
+    }
+    try { history.replaceState(null, '', '#' + target.id); } catch (e) {}
+    if (scroll) window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  }
+
+  document.addEventListener('click', (ev) => {
+    const a = ev.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    if (!isPage(id)) return;
+    ev.preventDefault();
+    show(id, true);
+  });
+
+  window.addEventListener('hashchange', () => {
+    const id = location.hash.slice(1);
+    if (isPage(id)) show(id, true);
+  });
+
+  const start = location.hash.slice(1);
+  show(isPage(start) ? start : 'inicio', false);
+})();
+</script>
+</body>
+</html>
